@@ -60,7 +60,7 @@ module.exports = new Command({
 
               embed.setColor(config.warningEmbedColor);
               embed.setTitle("No match found.");
-              message.channel.send({embeds:[embed]}).then(msg => msg.delete({timeout: 3000 }));
+              message.channel.send({embeds:[embed]});
 
               return;
           }
@@ -73,7 +73,7 @@ module.exports = new Command({
       {
         embed.setColor(config.warningEmbedColor);
         embed.setTitle(err);
-        message.channel.send({embeds:[embed]}).then(msg => msg.delete({timeout: 3000 }));
+        message.channel.send({embeds:[embed]});
       })
     }
 
