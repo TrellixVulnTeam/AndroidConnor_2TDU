@@ -11,7 +11,7 @@ module.exports = new Command({
     async run(message, args, client)
     {
       let embed = new Discord.MessageEmbed();
-      embed.setColor(config.warningEmbedColor);
+      embed.setColor(config.normalEmbedColor);
       embed.setTitle("**Please wait...**");
 
       let searchTerm = args.slice(1).join(" ");
@@ -43,32 +43,38 @@ module.exports = new Command({
        
       cloudscraper(options)
       .then(response => 
-        {
-            $ = cheerio.load(response); // load responseBody into cheerio (jQuery)
+      {
+          $ = cheerio.load(response); // load responseBody into cheerio (jQuery)
  
-            // In this search engine they use ".image a.link" as their css selector for image links
-            var links = $(".image a.link");
+          // In this search engine they use ".image a.link" as their css selector for image links
+           var links = $(".image a.link");
 
-            // We want to fetch the URLs not the DOM nodes, we do this with jQuery's .attr() function
-            // this line might be hard to understand but it goes thru all the links (DOM) and stores each url in an array called urls
-            var urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"));
+          // We want to fetch the URLs not the DOM nodes, we do this with jQuery's .attr() function
+          // this line might be hard to understand but it goes thru all the links (DOM) and stores each url in an array called urls
+          var urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"));
 
-            if (!urls.length) {
+          if (!urls.length) 
+          {
                 
-                msg.delete();
+              msg.delete();
 
-                embed.setColor(config.warningEmbedColor);
-                embed.setTitle("No match found.");
+              embed.setColor(config.warningEmbedColor);
+              embed.setTitle("No match found.");
+              message.channel.send({embeds:[embed]}).then(msg => msg.delete({timeout: 3000 }));
 
-                message.channel.send({embeds:[embed]}).then(msg => msg.delete({timeout: 3000 }));
-
-                return;
-            }
+              return;
+          }
      
-            // Send result
-            msg.delete();
-            message.channel.send( urls[~~(Math.random() * 5)] );
-        });
+          // Send result
+          msg.delete();
+          message.channel.send( urls[~~(Math.random() * 5)] );
+      })
+      .catch(err => 
+      {
+        embed.setColor(config.warningEmbedColor);
+        embed.setTitle(err);
+        message.channel.send({embeds:[embed]}).then(msg => msg.delete({timeout: 3000 }));
+      })
     }
 
 });
