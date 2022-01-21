@@ -1,5 +1,5 @@
 const Command = require('../Structures/Command.js');
-const config = require('../settings/config.json');
+const config = require('../config.json');
 const Discord = require('discord.js');
 const { Permissions } = require('discord.js');
 
@@ -10,7 +10,7 @@ module.exports = new Command({
     async run(message, args, client)
     {
         let embed = new Discord.MessageEmbed();
-        embed.setColor(config.warningEmbedColor);     
+        embed.setColor(config.warningColor);     
 
         embed.setDescription("You don't have permission to do that!")
         if(!message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) return message.channel.send({embeds : [embed]});

@@ -1,6 +1,6 @@
 const Command = require('../Structures/Command.js');
 const Discord = require('discord.js');
-const config = require('../settings/config.json');
+const config = require('../config.json');
 const cheerio = require("cheerio");
 const cloudscraper = require('cloudscraper');
 
@@ -58,7 +58,7 @@ module.exports = new Command({
                 
               msg.delete();
 
-              embed.setColor(config.warningEmbedColor);
+              embed.setColor(config.warningColor);
               embed.setTitle("No match found.");
               message.channel.send({embeds:[embed]});
 
@@ -71,7 +71,7 @@ module.exports = new Command({
       })
       .catch(err => 
       {
-        embed.setColor(config.warningEmbedColor);
+        embed.setColor(config.warningColor);
         embed.setTitle(err);
         message.channel.send({embeds:[embed]});
       })

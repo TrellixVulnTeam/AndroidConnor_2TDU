@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const Command = require('../Structures/Command.js');
 const fetch = require('node-fetch');
-const config = require('../settings/config.json');
+const config = require('../config.json');
 
 module.exports = new Command({
     name: "nasa",
@@ -24,7 +24,7 @@ module.exports = new Command({
             .setTitle(result.title)
             .setDescription(result.explanation)
             .setImage(result.url)
-            .setColor(config.normalEmbedColor);
+            .setColor(config.normalColor);
     
             message.channel.send({embeds: [embed] });
         }      

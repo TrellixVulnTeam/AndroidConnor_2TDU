@@ -8,13 +8,13 @@ module.exports = new Command({
     async run(message, args, client)
     {
         let avatar = await Jimp.read(message.author.displayAvatarURL({ format: 'png' })) 
-        let phoenix = await Jimp.read('ImageResources/BOI.jpg');
+        let phoenix = await Jimp.read('Images/Resources/BOI.jpg');
 
         phoenix.composite(avatar, 320 - avatar.getWidth()/2, 115 - avatar.getHeight()/2) 
         phoenix.composite(avatar, 440 - avatar.getWidth()/2, 710 - avatar.getHeight()/2) 
-        .write('ImageHolder/BOI.jpg'); // save  
+        .write("./Images/Cache.jpg"); // save  
          
           
-        message.channel.send({files: ["./ImageHolder/BOI.jpg"]})
+        message.channel.send({files: ["./Images/Cache.jpg"]})
     }
 });

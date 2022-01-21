@@ -1,6 +1,6 @@
 const Command = require('../Structures/Command.js');
 const Discord = require('discord.js');
-const config = require('../settings/config.json');
+const config = require('../config.json');
 
 module.exports = new Command({
     name: "commands",
@@ -10,7 +10,7 @@ module.exports = new Command({
     {
        const embed = new Discord.MessageEmbed();
        embed.setTitle("Commands")
-       embed.setColor(config.normalEmbedColor);
+       embed.setColor(config.normalColor);
 
        client.commands.forEach(com => 
        {

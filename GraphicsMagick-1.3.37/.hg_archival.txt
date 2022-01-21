@@ -1,0 +1,6 @@
+repo: a75d655b08b1be43db9964d453061e988377d1d7
+node: ab38f2d6f433ab7a94be25834b1023531f2eea27
+branch: GraphicsMagick-1_3
+latesttag: GraphicsMagick-1_3_37
+latesttagdistance: 1
+changessincelatesttag: 1

@@ -10,7 +10,7 @@ module.exports = new Command({
         let font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE) 
 
         let avatar = await Jimp.read(message.author.displayAvatarURL({ format: 'png' })) 
-        let phoenix = await Jimp.read('ImageResources/PhoenixPointing.jpg');
+        let phoenix = await Jimp.read('Images/Resources/PhoenixPointing.jpg');
     
         let msgContent = message.content.slice(args[0].length + 1);
         let text = msgContent != ""? msgContent : "Admit it! I caught you lying!";
@@ -22,9 +22,9 @@ module.exports = new Command({
             alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER
         }, phoenix.getWidth(), phoenix.getHeight() / 2) 
 
-        .write('ImageHolder/PhoenixPointing.jpg'); // save  
+        .write("./Images/Cache.jpg"); // save  
          
           
-        message.channel.send({files: ["./ImageHolder/PhoenixPointing.jpg"]})
+        message.channel.send({files: ["./Images/Cache.jpg"]})
     }
 });
