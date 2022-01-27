@@ -9,6 +9,9 @@ module.exports = new Command({
 
     async run(message, args, client)
     {
+        let channel = message.channel;
+        let amount = parseInt(args[1]) - 1;
+
         let embed = new Discord.MessageEmbed();
         embed.setColor(config.warningColor);     
 
@@ -22,15 +25,11 @@ module.exports = new Command({
         if (isNaN(args[1])) return message.channel.send({embeds : [embed]});
 
         embed.setDescription("You can't remove more than 100 messages at once!")
-        if (args[1] > 100) return message.channel.send({embeds : [embed]});
+        if (amount > 100) return message.channel.send({embeds : [embed]});
 
         embed.setDescription("You have to delete at least one message!")
-        if (args[1] < 1) return message.channel.send({embeds : [embed]});
+        if (amount < 1) return message.channel.send({embeds : [embed]});
 
-       
-            let channel = message.channel;
-            let amount = parseInt(args[1]);
-    
-            await message.channel.bulkDelete(parseInt(amount) + 1, true);
+        await message.channel.bulkDelete(amount + 1, true);
     }
 });
