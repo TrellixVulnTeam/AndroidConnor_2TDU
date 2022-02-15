@@ -4,7 +4,7 @@ const Jimp = require('jimp');
 
 module.exports = new Command({
     name: "clown",
-    description: "A image command",
+    description: "An image command",
 
     async run(message, args, client)
     {
