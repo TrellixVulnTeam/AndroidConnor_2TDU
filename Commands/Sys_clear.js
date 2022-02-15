@@ -9,8 +9,7 @@ module.exports = new Command({
 
     async run(message, args, client)
     {
-        let channel = message.channel;
-        let amount = parseInt(args[1]) - 1;
+        let amount = parseInt(args[1]) + 1;
 
         let embed = new Discord.MessageEmbed();
         embed.setColor(config.warningColor);     
